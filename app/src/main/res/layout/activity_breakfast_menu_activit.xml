@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.breakfast_menu_activit"
+    android:background="#fff">
+
+   <ImageView
+       android:id="@+id/mm"
+       android:layout_width="match_parent"
+       android:layout_height="50dp"
+       android:src="@drawable/br"
+       android:layout_marginTop="20dp"
+       />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/mm"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/lin_back_breakfast"
+        android:padding="5dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp">
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:id="@+id/lin_egyptian"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="25dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Egyptian BreakFast"
+                        android:textColor="#009688"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:layout_gravity="center_horizontal"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Egg Dishes , Foul , Falafel ,\n Shakshouka ,Egaa Omelette "
+                        android:textColor="#000"
+                        android:textSize="17sp"
+                        android:textStyle="normal"
+                        android:layout_gravity="center_horizontal"/>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        >
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="show details"
+                            android:textSize="15sp"
+                            android:textColor="#017E72"
+                            android:textStyle="normal"
+                            android:drawableRight="@drawable/ic_navigate_next"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginRight="50dp"
+                            />
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="200dp"
+                    android:layout_height="1dp"
+                    android:background="#fff"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="3dp"
+                    />
+
+                <LinearLayout
+                    android:id="@+id/lin_indian"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="20dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Indian BreakFast"
+                        android:textColor="#009688"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:layout_gravity="center_horizontal"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Egg Dishes , Foul , Falafel ,\n Shakshouka ,Egaa Omelette "
+                        android:textColor="#000"
+                        android:textSize="17sp"
+                        android:textStyle="normal"
+                        android:layout_gravity="center_horizontal"/>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        >
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="show details"
+                            android:textSize="15sp"
+                            android:textColor="#009688"
+                            android:textStyle="normal"
+                            android:drawableRight="@drawable/ic_navigate_next"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginRight="50dp"
+                            />
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="200dp"
+                    android:layout_height="1dp"
+                    android:background="#fff"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="3dp"
+                    />
+
+                <LinearLayout
+                    android:id="@+id/lin_italian"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="20dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Italian BreakFast"
+                        android:textColor="#009688"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:layout_gravity="center_horizontal"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Egg Dishes , Foul , Falafel ,\n Shakshouka ,Egaa Omelette "
+                        android:textColor="#000"
+                        android:textSize="17sp"
+                        android:textStyle="normal"
+                        android:layout_gravity="center_horizontal"/>
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        >
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="show details"
+                            android:textSize="15sp"
+                            android:textColor="#009688"
+                            android:textStyle="normal"
+                            android:drawableRight="@drawable/ic_navigate_next"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginRight="50dp"/>
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="200dp"
+                    android:layout_height="1dp"
+                    android:background="#fff"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="3dp"
+                    />
+
+                <LinearLayout
+                    android:id="@+id/lin_french"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="20dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="French BreakFast"
+                        android:textColor="#009688"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:layout_gravity="center_horizontal"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Egg Dishes , Foul , Falafel ,\n Shakshouka ,Egaa Omelette "
+                        android:textColor="#000"
+                        android:textSize="17sp"
+                        android:textStyle="normal"
+                        android:layout_gravity="center_horizontal"/>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        >
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="show details"
+                            android:textSize="15sp"
+                            android:textColor="#009688"
+                            android:textStyle="normal"
+                            android:drawableRight="@drawable/ic_navigate_next"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginRight="50dp"/>
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="200dp"
+                    android:layout_height="1dp"
+                    android:background="#fff"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="3dp"
+                    />
+
+                <LinearLayout
+                    android:id="@+id/lin_moroccan"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="20dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Moroccan BreakFast"
+                        android:textColor="#009688"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:layout_gravity="center_horizontal"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Egg Dishes , Foul , Falafel ,\n Shakshouka ,Egaa Omelette "
+                        android:textColor="#000"
+                        android:textSize="17sp"
+                        android:textStyle="normal"
+                        android:layout_gravity="center_horizontal"/>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        >
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="show details"
+                            android:textSize="15sp"
+                            android:textColor="#009688"
+                            android:textStyle="normal"
+                            android:drawableRight="@drawable/ic_navigate_next"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginRight="50dp"/>
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="200dp"
+                    android:layout_height="1dp"
+                    android:background="#fff"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="3dp"
+                    />
+
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+
+
+
+</RelativeLayout>

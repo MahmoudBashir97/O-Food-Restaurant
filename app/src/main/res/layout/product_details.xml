@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/product_img"
+        android:layout_width="match_parent"
+        android:layout_height="280dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:src="@drawable/italian_cuisine" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="250dp"
+        android:background="@drawable/product_details_bck"
+        android:padding="5dp">
+
+        <RelativeLayout
+            android:id="@+id/rel_d"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="40dp"
+            android:layout_marginLeft="10dp">
+            <TextView
+                android:id="@+id/txt_name_pop"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="BlueBerry Ricotta Pancakes"
+                android:textSize="18sp"
+                android:textColor="#000"
+                android:textStyle="bold"
+                />
+            <TextView
+                android:id="@+id/txt_desc_pop"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Fluffy and BlueBerry Ricatto Pancakes"
+                android:textSize="15sp"
+                android:textColor="#AFAEAE"
+                android:layout_marginTop="5dp"
+                android:layout_below="@+id/txt_name_pop"/>
+            <LinearLayout
+                android:id="@+id/pr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="7dp"
+                android:layout_below="@+id/txt_desc_pop"
+                >
+
+                <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="$13.00"
+                android:textSize="20sp"
+                android:textColor="#018A7D"
+                android:textStyle="bold"/>
+
+                <RatingBar
+                    android:id="@+id/rating"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:saveEnabled="true"
+                    style="?android:attr/ratingBarStyleSmall"
+                    android:numStars="5"
+                    android:stepSize="1.0"
+                    android:isIndicator="true"
+                    android:clickable="true"
+                    android:layout_marginTop="7dp"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="7dp"
+                android:layout_below="@+id/txt_desc_pop"
+                android:layout_alignParentEnd="true"
+                android:layout_marginRight="15dp"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Give your rating"
+                    android:textSize="20sp"
+                    android:textColor="#000"
+                    android:textStyle="bold"/>
+
+                <RatingBar
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:saveEnabled="true"
+                    style="?android:attr/ratingBarStyleSmall"
+                    android:numStars="5"
+                    android:stepSize="1.0"
+                    android:isIndicator="true"
+                    android:clickable="true"
+                    android:layout_marginTop="7dp"
+                    android:layout_gravity="center_horizontal"
+                    />
+            </LinearLayout>
+        </RelativeLayout>
+
+        <View
+            android:id="@+id/v"
+            android:layout_width="380dp"
+            android:layout_height="1.0dp"
+            android:layout_below="@+id/rel_d"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="8dp"
+            android:background="#DBDBDB"/>
+        <TextView
+            android:id="@+id/txt_d"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Details"
+            android:textSize="20sp"
+            android:textColor="#000"
+            android:textStyle="bold"
+            android:layout_below="@+id/v"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="10dp"
+            />
+        <com.borjabravo.readmoretextview.ReadMoreTextView
+            android:id="@+id/desciption"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txt_d"
+            android:layout_marginTop="10dp"
+            android:inputType="textMultiLine"
+            android:padding="5dp"
+            android:text="There are many variation of passages of Lorem \n Ipsum available, but the majority has suffered in \n some form, by injected humour , some form, by injected humour , some form, by injected humour , some form, by injected humour"
+            app:trimExpandedText="Read More"
+            app:trimCollapsedText="Less"
+            app:trimMode="trimModeLine"
+            app:trimLength="3"
+            app:colorClickableText="#01A292"
+            android:textColor="#000"
+            android:textSize="15dp"
+            />
+        <LinearLayout
+            android:id="@+id/lin_quantity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@+id/desciption"
+            android:gravity="center_vertical"
+            android:layout_marginTop="10dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Quantity"
+                android:textSize="20sp"
+                android:textColor="#000"
+                android:textStyle="bold"
+                android:layout_marginLeft="10dp"
+                />
+
+
+            <nl.dionsegijn.steppertouch.StepperTouch
+                android:id="@+id/stepperTouch"
+                android:layout_width="100dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="20dp"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lin_total_price"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@+id/lin_quantity"
+            android:gravity="center_vertical"
+            android:layout_marginTop="20dp"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Total price"
+                android:textSize="20sp"
+                android:textColor="#000"
+                android:textStyle="bold"
+                android:layout_marginLeft="10dp"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="$13.00"
+                android:textSize="20sp"
+                android:textColor="#018A7D"
+                android:textStyle="bold"
+                android:layout_marginLeft="18dp"/>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="5dp"
+            android:layout_below="@+id/lin_total_price"
+            android:layout_marginTop="50dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp">
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="58dp"
+                android:text="Add to cart"
+                android:textAllCaps="false"
+                android:textSize="20sp"
+                android:textColor="#000"
+                android:textStyle="normal"
+                android:background="@drawable/add_to_cart_btn_back"
+                android:elevation="8dp"
+                android:layout_weight="1"
+                android:layout_marginRight="10dp"
+                />
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="58dp"
+                android:text="Place order"
+                android:textAllCaps="false"
+                android:textSize="20sp"
+                android:textColor="#fff"
+                android:textStyle="normal"
+                android:background="@drawable/place_order_btn_back"
+                android:elevation="8dp"
+                android:layout_weight="1"
+                android:layout_marginLeft="10dp"
+                />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+        </RelativeLayout>
+    </ScrollView>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#20000000"
+        android:layout_alignParentStart="true">
+
+    <ImageView
+        android:id="@+id/back_btn"
+        android:layout_width="45dp"
+        android:layout_height="40dp"
+        android:background="@drawable/ic_arrow_back"
+        tools:ignore="ContentDescription"
+        android:layout_marginLeft="5dp"
+        android:layout_centerVertical="true"
+        />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Product detail"
+            android:textColor="#fff"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="15dp"
+            android:layout_toRightOf="@+id/back_btn"/>
+
+        <CheckBox
+            android:id="@+id/checkbox_heart"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:layout_marginTop="15dp"
+            android:button="@drawable/checkbox_drawable"
+            android:clickable="true"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"
+            />
+
+</RelativeLayout>
+</RelativeLayout>
