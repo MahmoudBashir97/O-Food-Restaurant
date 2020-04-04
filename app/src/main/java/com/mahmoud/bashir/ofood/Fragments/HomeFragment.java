@@ -133,11 +133,6 @@ public class HomeFragment extends Fragment {
         });
 
 
-
-
-
-
-
         settings_btn.setOnClickListener(view -> {
             Intent intent=new Intent(getContext(), SettingsActivity.class);
             startActivity(intent);

@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "712099006279",
+    "firebase_url": "https://o-food-922bb.firebaseio.com",
+    "project_id": "o-food-922bb",
+    "storage_bucket": "o-food-922bb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:712099006279:android:3ce15c27ec9f60cd6cee62",
+        "android_client_info": {
+          "package_name": "com.mahmoud.bashir.ofood"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "712099006279-066pmq0kotg6a5btk6t50gv62a6t7et0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mahmoud.bashir.ofood",
+            "certificate_hash": "f6f0330153c80be4f6a659c6430f64ce443e6d7a"
+          }
+        },
+        {
+          "client_id": "712099006279-b1q8ih38fh9rb6m1uf67t5i5ssfhpq7i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDI0IRZNWyDPBEW67Jzvz4bMtVWSwZWhwk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "712099006279-b1q8ih38fh9rb6m1uf67t5i5ssfhpq7i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

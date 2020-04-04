@@ -34,7 +34,7 @@
         android:layout_height="150dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="100dp"
-        app:cardMaxElevation="8dp"
+        app:cardMaxElevation="80dp"
         app:cardCornerRadius="15dp">
         <ImageView
             android:id="@+id/profile_img"
