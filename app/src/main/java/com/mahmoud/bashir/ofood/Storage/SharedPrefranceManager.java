@@ -38,6 +38,22 @@ public class SharedPrefranceManager {
         editor.apply();
     }
 
+    public void save_Popular_Data(int Pop_Image,String Pop_Name,String Pop_Desc) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences(SHARED_PREF_USER, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        editor.clear();
+
+        editor.putString("Pop_Image", ""+Pop_Image);
+        editor.putString("Pop_Name", Pop_Name);
+        editor.putString("Pop_Desc", Pop_Desc);
+
+
+        editor.putBoolean("userLogged", true);
+
+        editor.apply();
+    }
+
     public boolean isLoggedIn() {
         SharedPreferences sharedPreferences = context.getSharedPreferences(SHARED_PREF_USER, Context.MODE_PRIVATE);
         return sharedPreferences.getBoolean("userLogged", false);
@@ -56,6 +72,23 @@ public class SharedPrefranceManager {
     public String getUserEmail() {
         SharedPreferences sharedPreferences = context.getSharedPreferences(SHARED_PREF_USER, Context.MODE_PRIVATE);
         return sharedPreferences.getString("userEmail", "");
+    }
+
+
+
+    public String getPop_Image() {
+        SharedPreferences sharedPreferences = context.getSharedPreferences(SHARED_PREF_USER, Context.MODE_PRIVATE);
+        return sharedPreferences.getString("Pop_Image", "");
+    }
+
+    public String getPop_Name() {
+        SharedPreferences sharedPreferences = context.getSharedPreferences(SHARED_PREF_USER, Context.MODE_PRIVATE);
+        return sharedPreferences.getString("Pop_Name", "");
+    }
+
+    public String getPop_Desc() {
+        SharedPreferences sharedPreferences = context.getSharedPreferences(SHARED_PREF_USER, Context.MODE_PRIVATE);
+        return sharedPreferences.getString("Pop_Desc", "");
     }
 
     public void clearUser() {

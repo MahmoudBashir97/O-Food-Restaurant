@@ -20,6 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.mahmoud.bashir.ofood.Fragments.HomeFragment;
 import com.mahmoud.bashir.ofood.R;
 import com.mahmoud.bashir.ofood.Room.Favourite_Schema;
+import com.mahmoud.bashir.ofood.Storage.SharedPrefranceManager;
 import com.mahmoud.bashir.ofood.ViewModel.Favourite_viewModel;
 import com.mahmoud.bashir.ofood.models.Popular_Model;
 import com.mahmoud.bashir.ofood.ui.MainActivity;
@@ -65,6 +66,8 @@ public class Popular_adpt extends RecyclerView.Adapter<Popular_adpt.ViewHolder> 
                 n.putExtra("img_pop",popular_model.getImageURI());
                 n.putExtra("name_pop",popular_model.getNamePop());
                 n.putExtra("desc_pop",popular_model.getDescPop());
+
+                SharedPrefranceManager.getInastance(context).save_Popular_Data(popular_model.getImageURI(),popular_model.getNamePop(),popular_model.getDescPop());
                 context.startActivity(n);
             }
         });

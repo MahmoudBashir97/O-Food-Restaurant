@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.mahmoud.bashir.ofood">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -15,8 +15,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
-        <activity android:name=".ui.Code_Verification"/>
-        <activity android:name=".ui.Verify_phone"/>
+        <activity android:name=".ui.Payment_Methods_Activity"></activity>
+        <activity android:name=".ui.Code_Verification" />
+        <activity android:name=".ui.Verify_phone" />
         <activity android:name=".ui.Login_Activity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
