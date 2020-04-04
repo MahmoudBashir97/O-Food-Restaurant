@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.mahmoud.bashir.ofood">
+
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
         android:allowBackup="true"
@@ -10,16 +13,29 @@
         android:largeHeap="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".ui.breakfast_menu_activit"></activity>
-        <activity android:name=".ui.Product_details_Activity" />
-        <activity android:name=".ui.MainActivity">
+        android:theme="@style/AppTheme"
+        tools:ignore="AllowBackup,GoogleAppIndexingWarning">
+        <activity android:name=".ui.Code_Verification"/>
+        <activity android:name=".ui.Verify_phone"/>
+        <activity android:name=".ui.Login_Activity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ui.SignUp_Activity" />
+        <activity android:name=".ui.Shopping_cart_Activity" />
+        <activity android:name=".ui.SettingsActivity" />
+        <activity android:name=".ui.breakfast_menu_activit" />
+        <activity android:name=".ui.Product_details_Activity" />
+        <activity
+            android:name=".ui.MainActivity"
+            android:parentActivityName=".ui.Login_Activity" />
+
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:resource="@string/facebook_id" />
     </application>
 
 </manifest>

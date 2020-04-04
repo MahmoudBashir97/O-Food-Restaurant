@@ -4,28 +4,29 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragments.SearchFragment">
+    tools:context=".Fragments.SearchFragment"
+    android:background="#fff">
 
     <RelativeLayout
         android:id="@+id/Rr"
         android:layout_width="match_parent"
-        android:layout_height="180dp"
-        android:background="@drawable/italian_back">
+        android:layout_height="50dp">
     <RelativeLayout
-        android:layout_width="325dp"
+        android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="@drawable/search_view_back"
-        android:layout_marginTop="30dp"
-        android:layout_centerInParent="true"
+        android:layout_centerHorizontal="true"
+        android:padding="5dp"
         >
     <androidx.appcompat.widget.SearchView
         android:id="@+id/searchView"
-        android:layout_width="320dp"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
         android:layout_centerHorizontal="true"
         app:queryHint="Search Here"
         app:iconifiedByDefault="false"
         app:defaultQueryHint="Search Here"
+
         />
 </RelativeLayout>
 </RelativeLayout>
@@ -35,13 +36,13 @@
         android:layout_height="match_parent"
         android:layout_below="@+id/Rr"
         android:padding="5dp">
-        <ListView
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/search_rec"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/lv1"
-            android:divider="#018A7D"
-            android:dividerHeight="0.3dp"
-            android:visibility="gone"
+            android:layout_marginTop="5dp"
+            android:padding="5dp"
+            android:background="#fff"
             />
         <TextView
             android:id="@+id/search_err"
@@ -52,6 +53,7 @@
             android:textStyle="normal"
             android:layout_centerInParent="true"
             android:textColor="#ACABAB"
+            android:visibility="gone"
             />
     </RelativeLayout>
 </RelativeLayout>

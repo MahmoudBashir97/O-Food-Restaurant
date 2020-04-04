@@ -19,7 +19,7 @@ import com.mahmoud.bashir.ofood.Fragments.ProfileFragment;
 import com.mahmoud.bashir.ofood.Fragments.SearchFragment;
 import com.mahmoud.bashir.ofood.R;
 
-public class MainActivity extends FragmentActivity
+public class MainActivity extends AppCompatActivity
 implements NavigationView.OnNavigationItemSelectedListener{
 
     private Fragment frag;
