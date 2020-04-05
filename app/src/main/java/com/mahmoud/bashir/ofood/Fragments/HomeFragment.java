@@ -115,8 +115,7 @@ public class HomeFragment extends Fragment {
         txt_usename=v.findViewById(R.id.txt_usename);
         user_image=v.findViewById(R.id.user_image);
 
-        //get from storage
-        txt_usename.setText(SharedPrefranceManager.getInastance(getContext()).getUsername());
+
 
         auth = FirebaseAuth.getInstance();
         Current_user_ID = auth.getCurrentUser().getUid();
@@ -125,6 +124,8 @@ public class HomeFragment extends Fragment {
 
         RetrieveUserInfo();
 
+        //get from storage
+        txt_usename.setText(SharedPrefranceManager.getInastance(getContext()).getUsername());
 
         user_image.setOnClickListener(view -> {
 
@@ -366,7 +367,11 @@ public class HomeFragment extends Fragment {
 
                 if (!dataSnapshot.child("image").getValue().toString().equals(null)) {
                     String prof_uri= String.valueOf(dataSnapshot.child("image").getValue());
+                    String usName= String.valueOf(dataSnapshot.child("user_name").getValue());
+                    String usEmail= String.valueOf(dataSnapshot.child("email").getValue());
+                    String usPhone= String.valueOf(dataSnapshot.child("phone_no").getValue());
                     Picasso.get().load(prof_uri).resize(80, 70).centerInside().placeholder(R.drawable.ic_add_a_photo_black_24dp).into(user_image);
+                    SharedPrefranceManager.getInastance(getContext()).saveUser(usName,usEmail,usPhone);
                 }
             }
 
@@ -376,4 +381,6 @@ public class HomeFragment extends Fragment {
             }
         });
     }
+
+
 }

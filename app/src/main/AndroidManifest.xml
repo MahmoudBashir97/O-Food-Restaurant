@@ -16,7 +16,6 @@
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
         <activity android:name=".ui.Payment_Methods_Activity"></activity>
-        <activity android:name=".ui.Code_Verification" />
         <activity android:name=".ui.Verify_phone" />
         <activity android:name=".ui.Login_Activity">
             <intent-filter>

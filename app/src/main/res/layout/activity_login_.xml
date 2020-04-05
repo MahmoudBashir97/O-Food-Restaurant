@@ -61,6 +61,7 @@
         android:orientation="vertical"
         android:layout_marginTop="40dp"
         android:padding="5dp"
+
         >
         <EditText
 
@@ -170,7 +171,8 @@
             android:orientation="horizontal"
             android:layout_marginTop="60dp"
             android:gravity="center"
-            android:layout_marginBottom="10dp">
+            android:layout_marginBottom="10dp"
+            >
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
