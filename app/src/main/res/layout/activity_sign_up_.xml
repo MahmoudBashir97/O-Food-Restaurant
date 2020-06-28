@@ -134,11 +134,12 @@
             android:orientation="horizontal"
             android:layout_marginTop="135dp"
             android:gravity="center"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="15dp"
+            android:padding="5dp"
             >
             <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 android:text="Already have account?"
                 android:textSize="16sp"
                 android:layout_marginTop="5dp"
@@ -147,7 +148,7 @@
             <TextView
                 android:id="@+id/to_login"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 android:text="Login"
                 android:textSize="19dp"
                 android:layout_marginTop="5dp"

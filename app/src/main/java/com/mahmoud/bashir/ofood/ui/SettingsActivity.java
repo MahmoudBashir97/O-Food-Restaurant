@@ -3,8 +3,13 @@ package com.mahmoud.bashir.ofood.ui;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SwitchCompat;
 
+import android.app.AlarmManager;
+import android.app.Notification;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -12,6 +17,7 @@ import android.widget.Toast;
 
 import com.mahmoud.bashir.ofood.Fragments.HomeFragment;
 import com.mahmoud.bashir.ofood.R;
+import com.mahmoud.bashir.ofood.Services.Notification_Receivers;
 import com.mahmoud.bashir.ofood.Storage.SharedPrefranceManager;
 
 public class SettingsActivity extends AppCompatActivity {
@@ -19,6 +25,8 @@ public class SettingsActivity extends AppCompatActivity {
     SwitchCompat switch_notification;
     RelativeLayout log_out;
     ImageView img_back;
+
+    String CUID="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +36,8 @@ public class SettingsActivity extends AppCompatActivity {
         switch_notification=findViewById(R.id.switch_notification);
         log_out=findViewById(R.id.log_out);
         img_back=findViewById(R.id.img_back);
+
+        CUID=getIntent().getStringExtra("CUID");
 
         img_back.setOnClickListener(view -> {
             Intent intent=new Intent(SettingsActivity.this,MainActivity.class);
@@ -40,7 +50,7 @@ public class SettingsActivity extends AppCompatActivity {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if (b){
-                    Toast.makeText(SettingsActivity.this, "on", Toast.LENGTH_SHORT).show();
+                    Alarm_check_to_Notification(b);
                 }else{
                     Toast.makeText(SettingsActivity.this, "off", Toast.LENGTH_SHORT).show();
                 }
@@ -58,5 +68,29 @@ public class SettingsActivity extends AppCompatActivity {
         });
 
 
+    }
+    public void Alarm_check_to_Notification(boolean state){
+        AlarmManager manager=(AlarmManager)getSystemService(Context.ALARM_SERVICE);
+
+        Intent myintent;
+        PendingIntent pendingIntent;
+
+        myintent = new Intent(SettingsActivity.this, Notification_Receivers.class);
+        myintent.putExtra("news","hey we added new Items , come to see it!");
+        myintent.putExtra("CUID",CUID);
+
+
+
+
+        if (state){
+
+            pendingIntent = PendingIntent.getBroadcast(this,0,myintent,0);
+            manager.set(AlarmManager.RTC_WAKEUP, SystemClock.elapsedRealtime()+6000,pendingIntent);
+
+        }
+
+
+
+           // manager.setRepeating(AlarmManager.RTC_WAKEUP,SystemClock.elapsedRealtime()+6000,6000,pendingIntent);
     }
 }

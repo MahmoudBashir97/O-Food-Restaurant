@@ -72,7 +72,7 @@ public class HomeFragment extends Fragment {
     String Current_user_ID;
 
     //imgs btns
-    ImageView settings_btn , shopping_cart,user_image;
+    ImageView settings_btn , shopping_cart,user_image,added_check_marker;
 
     TextView txt_usename;
 
@@ -114,8 +114,12 @@ public class HomeFragment extends Fragment {
         shopping_cart=v.findViewById(R.id.shopping_cart);
         txt_usename=v.findViewById(R.id.txt_usename);
         user_image=v.findViewById(R.id.user_image);
+        added_check_marker=v.findViewById(R.id.added_check_marker);
 
 
+        if (SharedPrefranceManager.getInastance(getContext()).getChecked().equals("true")){
+            added_check_marker.setVisibility(View.VISIBLE);
+        }
 
         auth = FirebaseAuth.getInstance();
         Current_user_ID = auth.getCurrentUser().getUid();
@@ -136,6 +140,7 @@ public class HomeFragment extends Fragment {
 
         settings_btn.setOnClickListener(view -> {
             Intent intent=new Intent(getContext(), SettingsActivity.class);
+            intent.putExtra("CUID",Current_user_ID);
             startActivity(intent);
         });
         shopping_cart.setOnClickListener(view -> {

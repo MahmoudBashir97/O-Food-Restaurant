@@ -14,7 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.mahmoud.bashir.ofood.R;
-import com.mahmoud.bashir.ofood.Room.Favourite_Schema;
+import com.mahmoud.bashir.ofood.Room.Favourite_DB.Favourite_Schema;
 import com.mahmoud.bashir.ofood.ViewModel.Favourite_viewModel;
 import com.mahmoud.bashir.ofood.adapters.fav_adpt;
 

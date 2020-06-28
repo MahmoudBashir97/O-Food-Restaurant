@@ -59,6 +59,33 @@ public class SharedPrefranceManager {
         return sharedPreferences.getBoolean("userLogged", false);
     }
 
+
+
+    public void save_Add_to_cart_Marker(boolean added) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences(SHARED_PREF_USER, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        editor.clear();
+
+        editor.putString("Checked", ""+added);
+        editor.putBoolean("userLogged", true);
+
+        editor.apply();
+    }
+
+    public void save_Add_to_cart_ID(int id) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences(SHARED_PREF_USER, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        editor.clear();
+
+        editor.putInt("id", id);
+        editor.putBoolean("userLogged", true);
+
+        editor.apply();
+    }
+
+
     public String getUsername() {
         SharedPreferences sharedPreferences = context.getSharedPreferences(SHARED_PREF_USER, Context.MODE_PRIVATE);
         return sharedPreferences.getString("userName", "");
@@ -76,6 +103,7 @@ public class SharedPrefranceManager {
 
 
 
+
     public String getPop_Image() {
         SharedPreferences sharedPreferences = context.getSharedPreferences(SHARED_PREF_USER, Context.MODE_PRIVATE);
         return sharedPreferences.getString("Pop_Image", "");
@@ -90,6 +118,17 @@ public class SharedPrefranceManager {
         SharedPreferences sharedPreferences = context.getSharedPreferences(SHARED_PREF_USER, Context.MODE_PRIVATE);
         return sharedPreferences.getString("Pop_Desc", "");
     }
+
+    public String getChecked() {
+        SharedPreferences sharedPreferences = context.getSharedPreferences(SHARED_PREF_USER, Context.MODE_PRIVATE);
+        return sharedPreferences.getString("Checked", "");
+    }
+
+    public int getID() {
+        SharedPreferences sharedPreferences = context.getSharedPreferences(SHARED_PREF_USER, Context.MODE_PRIVATE);
+        return sharedPreferences.getInt("id", -1);
+    }
+
 
     public void clearUser() {
         SharedPreferences sharedPreferences = context.getSharedPreferences(SHARED_PREF_USER, Context.MODE_PRIVATE);

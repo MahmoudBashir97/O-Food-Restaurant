@@ -127,7 +127,7 @@ public class Login_Activity extends AppCompatActivity   {
 
         //Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
-        CUID=mAuth.getCurrentUser().getUid();
+
 
 
         google_sign = findViewById(R.id.google_sign);
@@ -184,6 +184,7 @@ public class Login_Activity extends AppCompatActivity   {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithCredential:success");
                             FirebaseUser user = mAuth.getCurrentUser();
+                            CUID=user.getUid();
 
 
                                 Intent n=new Intent(Login_Activity.this,Verify_phone.class);
@@ -223,6 +224,8 @@ public class Login_Activity extends AppCompatActivity   {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
+
+                            CUID=user.getUid();
 
                             Intent i=new Intent(Login_Activity.this,MainActivity.class);
                             startActivity(i);

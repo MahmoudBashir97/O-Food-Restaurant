@@ -29,91 +29,24 @@
         app:cardElevation="20dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="110dp">
-        <RelativeLayout
+        <com.wajahatkarim3.easyflipview.EasyFlipView
+            android:id="@+id/flipview"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="20dp">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Total Payment"
-                    android:textSize="20sp"
-                    android:textColor="#000"
-                    android:textStyle="bold"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="$255"
-                    android:textSize="35sp"
-                    android:textColor="#009688"
-                    android:textStyle="bold"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="20dp"
-                    />
+            android:layout_height="match_parent"
+            app:flipOnTouch="true"
+            app:flipEnabled="true"
+            app:flipDuration="400"
+            app:flipType="horizontal"
+            app:flipFrom="front"
+            app:autoFlipBack="false"
+            app:autoFlipBackTime="2000"
+            >
 
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_marginBottom="30dp"
-                android:orientation="horizontal"
-                android:weightSum="2"
-                >
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_weight="1"
-                    >
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Date"
-                        android:textColor="#7E7D7D"
-                        android:textSize="18sp"
-                        android:layout_gravity="center"
-                        />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="12 Mar 2020"
-                        android:textColor="#000"
-                        android:textSize="18sp"
-                        android:layout_gravity="center"
-                        />
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_weight="1"
-                    >
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Time"
-                        android:textColor="#7E7D7D"
-                        android:textSize="18sp"
-                        android:layout_gravity="center"
-                        />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Monday,15:00"
-                        android:textColor="#000"
-                        android:textSize="18sp"
-                        android:layout_gravity="center"
-                        />
-                </LinearLayout>
-            </LinearLayout>
+            <include layout="@layout/card_back_layout"/>
 
-        </RelativeLayout>
+            <include layout="@layout/card_front_layout"/>
+
+        </com.wajahatkarim3.easyflipview.EasyFlipView>
 
     </androidx.cardview.widget.CardView>
 

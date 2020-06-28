@@ -1,4 +1,4 @@
-package com.mahmoud.bashir.ofood.Room;
+package com.mahmoud.bashir.ofood.Room.Favourite_DB;
 
 import android.content.Context;
 import android.os.AsyncTask;
@@ -21,7 +21,7 @@ public abstract class Favourite_Database extends RoomDatabase {
     public static synchronized Favourite_Database getInstance(Context context) {
         if (instance == null) {
             instance = Room.databaseBuilder(context.getApplicationContext(),
-                    Favourite_Database.class, "note_database")
+                    Favourite_Database.class, "favourites_database")
                     .fallbackToDestructiveMigration()
                     .addCallback(roomCallback)
                     .build();

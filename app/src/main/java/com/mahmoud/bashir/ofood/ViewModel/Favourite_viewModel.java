@@ -6,8 +6,8 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
-import com.mahmoud.bashir.ofood.Room.Favourite_Repository;
-import com.mahmoud.bashir.ofood.Room.Favourite_Schema;
+import com.mahmoud.bashir.ofood.Room.Favourite_DB.Favourite_Repository;
+import com.mahmoud.bashir.ofood.Room.Favourite_DB.Favourite_Schema;
 
 import java.util.List;
 

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/back_gr"
+    android:background="#F9FAFA"
     >
 
     <RelativeLayout
@@ -13,6 +13,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_marginTop="5dp">
+
         <ImageView
             android:id="@+id/shopping_cart"
             android:layout_width="30dp"
@@ -21,6 +22,17 @@
             android:layout_alignParentEnd="true"
             android:layout_marginRight="20dp"
             />
+
+        <ImageView
+        android:id="@+id/added_check_marker"
+        android:layout_width="18dp"
+        android:layout_height="18dp"
+        android:src="@drawable/ic_check_circle_black_24dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="18dp"
+        android:visibility="gone"
+            />
+
         <ImageView
             android:id="@+id/settings_btn"
             android:layout_width="30dp"
@@ -35,7 +47,7 @@
         android:layout_below="@+id/rrrrrr"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/back_gr">
+        android:background="#F9FAFA">
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

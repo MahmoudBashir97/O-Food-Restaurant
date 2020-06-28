@@ -1,4 +1,4 @@
-package com.mahmoud.bashir.ofood.Room;
+package com.mahmoud.bashir.ofood.Room.Favourite_DB;
 
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;

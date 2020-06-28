@@ -171,7 +171,8 @@
             android:orientation="horizontal"
             android:layout_marginTop="60dp"
             android:gravity="center"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="15dp"
+            android:padding="5dp"
             >
             <TextView
                 android:layout_width="wrap_content"
@@ -189,6 +190,7 @@
                 android:textSize="19dp"
                 android:layout_marginTop="5dp"
                 android:textColor="#018A7D"
+
                 />
 
         </LinearLayout>

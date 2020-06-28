@@ -9,24 +9,20 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.mahmoud.bashir.ofood.Fragments.HomeFragment;
 import com.mahmoud.bashir.ofood.R;
-import com.mahmoud.bashir.ofood.Room.Favourite_Schema;
+import com.mahmoud.bashir.ofood.Room.Favourite_DB.Favourite_Schema;
 import com.mahmoud.bashir.ofood.Storage.SharedPrefranceManager;
 import com.mahmoud.bashir.ofood.ViewModel.Favourite_viewModel;
 import com.mahmoud.bashir.ofood.models.Popular_Model;
 import com.mahmoud.bashir.ofood.ui.MainActivity;
 import com.mahmoud.bashir.ofood.ui.Product_details_Activity;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Popular_adpt extends RecyclerView.Adapter<Popular_adpt.ViewHolder> {

@@ -76,7 +76,7 @@ public class Verify_phone extends AppCompatActivity {
 
         if (getsort.equals("sign_up")){
 
-            Toast.makeText(Verify_phone.this, ""+getSignupphone, Toast.LENGTH_SHORT).show();
+            //Toast.makeText(Verify_phone.this, ""+getSignupphone, Toast.LENGTH_SHORT).show();
 
             phone_no.setVisibility(View.GONE);
             ok_btn.setVisibility(View.GONE);
@@ -167,6 +167,7 @@ public class Verify_phone extends AppCompatActivity {
                             hashMap.put("email",email);
                             hashMap.put("user_name", fname);
                             hashMap.put("phone_no",getph_no);
+                            hashMap.put("image","userImage");
 
 
                             reference.setValue(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {

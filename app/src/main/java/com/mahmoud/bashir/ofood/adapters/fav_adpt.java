@@ -12,9 +12,7 @@ import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.mahmoud.bashir.ofood.R;
-import com.mahmoud.bashir.ofood.Room.Favourite_Schema;
-
-import java.util.List;
+import com.mahmoud.bashir.ofood.Room.Favourite_DB.Favourite_Schema;
 
 public class fav_adpt extends ListAdapter<Favourite_Schema,fav_adpt.ViewHolder> {
 

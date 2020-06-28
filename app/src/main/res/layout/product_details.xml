@@ -20,7 +20,8 @@
         android:layout_height="280dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:src="@drawable/italian_cuisine" />
+        android:src="@drawable/italian_cuisine"
+        android:scaleType="fitXY"/>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -239,7 +240,6 @@
                 android:elevation="8dp"
                 android:layout_weight="1"
                 android:layout_marginRight="10dp"
-                android:onClick="add_to_cart_OnClick"
                 />
 
             <Button

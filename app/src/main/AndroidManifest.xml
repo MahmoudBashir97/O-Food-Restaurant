@@ -15,7 +15,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
-        <activity android:name=".ui.Payment_Methods_Activity"></activity>
+
+        <activity android:name=".ui.Payment_Methods_Activity" />
         <activity android:name=".ui.Verify_phone" />
         <activity android:name=".ui.Login_Activity">
             <intent-filter>
@@ -36,6 +37,8 @@
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
             android:resource="@string/facebook_id" />
+
+        <receiver android:name=".Services.Notification_Receivers"/>
     </application>
 
 </manifest>
