@@ -75,10 +75,8 @@ public class Verify_phone extends AppCompatActivity {
 
         //Toast.makeText(Verify_phone.this, ""+"email : "+getemail +" " + " name : "+getname, Toast.LENGTH_SHORT).show();
 
-
         if (getsort.equals("sign_up")) {
 
-            //Toast.makeText(Verify_phone.this, ""+getSignupphone, Toast.LENGTH_SHORT).show();
 
             phone_no.setVisibility(View.GONE);
             txt_attention_message.setVisibility(View.GONE);
@@ -160,7 +158,13 @@ public class Verify_phone extends AppCompatActivity {
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
+
                         if (task.isSuccessful()) {
+
+                            if (getSignupphone != null) {
+                                getph_no = getSignupphone;
+                            }
+
                             FirebaseUser firebaseUser = mAuth.getCurrentUser();
                             assert firebaseUser != null;
                             String userid = firebaseUser.getUid();
@@ -185,7 +189,6 @@ public class Verify_phone extends AppCompatActivity {
                                             startActivity(intent);
                                             SharedPrefranceManager.getInastance(context).saveUser(fname, email, phone);
                                             finish();
-
                                         } else {
                                             intent = new Intent(Verify_phone.this, MainActivity.class);
                                             intent.putExtra("id", userid);
@@ -210,7 +213,7 @@ public class Verify_phone extends AppCompatActivity {
                            finish();*/
                         } else {
                             Toast.makeText(Verify_phone.this, "You can not register with this email & password !!", Toast.LENGTH_SHORT).show();
-                        }
+                       }
 
 
                     }

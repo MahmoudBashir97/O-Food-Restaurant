@@ -77,8 +77,6 @@ public class SignUp_Activity extends AppCompatActivity {
                 signin_auth(getemail,getpassword);
             }
         });
-
-
     }
 
     public void signin_auth (String email ,String pass){

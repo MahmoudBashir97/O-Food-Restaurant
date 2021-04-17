@@ -64,9 +64,10 @@ public class SettingsActivity extends AppCompatActivity {
 
         //logout button
         log_out.setOnClickListener(view -> {
-
             SharedPrefranceManager.getInastance(this).clearUser();
-            startActivity(new Intent(getApplicationContext(),Login_Activity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_CLEAR_TASK));
+            Intent i = new Intent(SettingsActivity.this,Login_Activity.class);
+            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(i);
             finish();
         });
 
