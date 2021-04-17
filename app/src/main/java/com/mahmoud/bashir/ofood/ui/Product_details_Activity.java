@@ -30,7 +30,7 @@ import nl.dionsegijn.steppertouch.StepperTouch;
 public class Product_details_Activity extends AppCompatActivity {
 
     private static final String CHANNEL_ID ="BUBLES_CART" ;
-    ImageView product_img;
+    ImageView product_img,back_btn;
     TextView txt_name_pop,txt_desc_pop,total_price;
     Button add_to_cart_btn,place_order_btn;
     int getImage;
@@ -49,6 +49,7 @@ public class Product_details_Activity extends AppCompatActivity {
 
 
         // init view
+        back_btn=findViewById(R.id.back_btn);
         product_img=findViewById(R.id.product_img);
         txt_name_pop=findViewById(R.id.txt_name_pop);
         txt_desc_pop=findViewById(R.id.txt_desc_pop);
@@ -113,6 +114,10 @@ public class Product_details_Activity extends AppCompatActivity {
             }
             add_to_cart_viewModel.insert(addToCartSchema);
             });
+
+        back_btn.setOnClickListener(v -> {
+            onBackPressed();
+        });
     }
 
     public float calculate_total_price(int numbers){
@@ -124,7 +129,6 @@ public class Product_details_Activity extends AppCompatActivity {
 
 
     public void place_order_onClick(View view) {
-        Toast.makeText(this, "Place Order !", Toast.LENGTH_SHORT).show();
         Intent i=new Intent(Product_details_Activity.this,Payment_Methods_Activity.class);
         startActivity(i);
     }

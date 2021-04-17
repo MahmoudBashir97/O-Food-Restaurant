@@ -36,9 +36,12 @@ import com.google.firebase.storage.StorageTask;
 import com.google.firebase.storage.UploadTask;
 import com.mahmoud.bashir.ofood.R;
 import com.mahmoud.bashir.ofood.Storage.SharedPrefranceManager;
+import com.mahmoud.bashir.ofood.ui.SettingsActivity;
 import com.squareup.picasso.Picasso;
 
 import java.util.HashMap;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 
 public class ProfileFragment extends Fragment {
@@ -59,7 +62,9 @@ public class ProfileFragment extends Fragment {
     String CUID;
 
     TextView username;
-    ImageView profile_img;
+    CircleImageView profile_img;
+    ImageView to_settings;
+    String phone_no;
     public ProfileFragment() {
         // Required empty public constructor
     }
@@ -70,12 +75,14 @@ public class ProfileFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v= inflater.inflate(R.layout.fragment_profile, container, false);
+
         username=v.findViewById(R.id.username);
         profile_img=v.findViewById(R.id.profile_img);
+        to_settings=v.findViewById(R.id.to_settings);
 
 
         username.setText(SharedPrefranceManager.getInastance(getContext()).getUsername());
-
+        phone_no = SharedPrefranceManager.getInastance(this.getContext()).getUserPhone();
         mAuth = FirebaseAuth.getInstance();
         CUID = mAuth.getCurrentUser().getUid();
         reference = FirebaseDatabase.getInstance().getReference("Users");
@@ -85,8 +92,11 @@ public class ProfileFragment extends Fragment {
                 openImage();
         });
 
-
         Retrieve_UserInfo();
+        to_settings.setOnClickListener(view -> {
+            Intent i = new Intent(getActivity(), SettingsActivity.class);
+            startActivity(i);
+        });
 
         return v;
     }
@@ -94,7 +104,7 @@ public class ProfileFragment extends Fragment {
 
     public void Retrieve_UserInfo(){
 
-        reference.child(CUID).addValueEventListener(new ValueEventListener() {
+        reference.child(phone_no).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 String getImage=String.valueOf(dataSnapshot.child("image").getValue());
@@ -147,7 +157,7 @@ public class ProfileFragment extends Fragment {
                         Uri downloadUri= (Uri) task.getResult();
                         String muri=downloadUri.toString();
 
-                        reference= FirebaseDatabase.getInstance().getReference("Users").child(CUID);
+                        reference= FirebaseDatabase.getInstance().getReference("Users").child(phone_no);
                         HashMap<String,Object> map=new HashMap<>();
                         map.put("image",muri);
                         reference.updateChildren(map);
@@ -188,4 +198,5 @@ public class ProfileFragment extends Fragment {
             }
         }
     }
+
 }

@@ -3,7 +3,7 @@ package com.mahmoud.bashir.ofood.Room.Favourite_DB;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-@Entity (tableName = "favourites")
+@Entity (tableName = "favourites_table")
 public class Favourite_Schema {
 
     @PrimaryKey(autoGenerate = true)
@@ -20,6 +20,7 @@ public class Favourite_Schema {
         this.description = description;
         this.imageURI = imageURI;
     }
+    public  Favourite_Schema(){}
 
     public void setId(int id) {
         this.id = id;
@@ -39,5 +40,17 @@ public class Favourite_Schema {
 
     public int getImageURI() {
         return imageURI;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setImageURI(int imageURI) {
+        this.imageURI = imageURI;
     }
 }

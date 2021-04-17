@@ -1,10 +1,12 @@
 package com.mahmoud.bashir.ofood.Fragments;
 
 
+import android.app.Application;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -14,9 +16,11 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.mahmoud.bashir.ofood.R;
+import com.mahmoud.bashir.ofood.Room.Favourite_DB.Favourite_Repository;
 import com.mahmoud.bashir.ofood.Room.Favourite_DB.Favourite_Schema;
 import com.mahmoud.bashir.ofood.ViewModel.Favourite_viewModel;
 import com.mahmoud.bashir.ofood.adapters.fav_adpt;
+import com.mahmoud.bashir.ofood.viewModelFactory;
 
 import java.util.List;
 
@@ -51,13 +55,15 @@ public class LikeFragment extends Fragment {
         fav_rec.setAdapter(favAdpt);
 
 
-
-        favourite_viewModel= ViewModelProviders.of(getActivity()).get(Favourite_viewModel.class);
+        Favourite_Repository repository = new Favourite_Repository(getActivity().getApplication());
+        viewModelFactory viewMFactory = new viewModelFactory(getActivity().getApplication(),repository);
+        favourite_viewModel = new ViewModelProvider(this, viewMFactory).get(Favourite_viewModel.class);
         favourite_viewModel.getAllFavs().observe(this, new Observer<List<Favourite_Schema>>() {
             @Override
             public void onChanged(List<Favourite_Schema> favourite_schemas) {
-
+                if (favourite_schemas.size()> 0){
                 favAdpt.submitList(favourite_schemas);
+            }
             }
         });
 

@@ -18,6 +18,7 @@ import com.mahmoud.bashir.ofood.Fragments.LikeFragment;
 import com.mahmoud.bashir.ofood.Fragments.ProfileFragment;
 import com.mahmoud.bashir.ofood.Fragments.SearchFragment;
 import com.mahmoud.bashir.ofood.R;
+import com.mahmoud.bashir.ofood.Room.Favourite_DB.Favourite_Repository;
 
 public class MainActivity extends AppCompatActivity
 implements NavigationView.OnNavigationItemSelectedListener{
@@ -65,6 +66,8 @@ implements NavigationView.OnNavigationItemSelectedListener{
         });
 
         mainnav.setSelectedItemId(R.id.home_menu);
+
+        Favourite_Repository repo = new Favourite_Repository(getApplication());
     }
 
     @Override

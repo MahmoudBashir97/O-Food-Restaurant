@@ -9,8 +9,10 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.RecyclerView;
@@ -19,6 +21,7 @@ import com.mahmoud.bashir.ofood.R;
 import com.mahmoud.bashir.ofood.Room.Favourite_DB.Favourite_Schema;
 import com.mahmoud.bashir.ofood.Storage.SharedPrefranceManager;
 import com.mahmoud.bashir.ofood.ViewModel.Favourite_viewModel;
+import com.mahmoud.bashir.ofood.adpt_interfaces.fav_checked_btn;
 import com.mahmoud.bashir.ofood.models.Popular_Model;
 import com.mahmoud.bashir.ofood.ui.MainActivity;
 import com.mahmoud.bashir.ofood.ui.Product_details_Activity;
@@ -27,28 +30,31 @@ import java.util.List;
 
 public class Popular_adpt extends RecyclerView.Adapter<Popular_adpt.ViewHolder> {
 
-    Context context;
-    List<Popular_Model> list;
-    Favourite_viewModel viewModel;
-    List<Favourite_Schema> schemas;
+     Context context;
+     List<Popular_Model> list;
+     Favourite_viewModel viewModel;
+     List<Favourite_Schema> schemas;
+     fav_checked_btn favCheckedBtn;
 
-    public Popular_adpt(Context context, List<Popular_Model> list) {
+    public Popular_adpt(Context context, List<Popular_Model> list,List<Favourite_Schema> schemas,fav_checked_btn CheckedBtn) {
         this.context = context;
         this.list = list;
+        this.schemas = schemas;
+        this.favCheckedBtn = CheckedBtn;
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v= LayoutInflater.from(parent.getContext()).inflate(R.layout.item_popular,parent,false);
+
         return new ViewHolder(v);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        final Popular_Model popular_model=list.get(position);
+        Popular_Model popular_model=list.get(position);
 
-        viewModel = ViewModelProviders.of((MainActivity) context).get(Favourite_viewModel.class);
 
 
         holder.img_pop.setImageResource(popular_model.getImageURI());
@@ -68,16 +74,13 @@ public class Popular_adpt extends RecyclerView.Adapter<Popular_adpt.ViewHolder> 
             }
         });
 
-        viewModel.getAllFavs().observe((MainActivity) context, new Observer<List<Favourite_Schema>>() {
-            @Override
-            public void onChanged(List<Favourite_Schema> favourite_schemas) {
-                for (Favourite_Schema favourite_schema: favourite_schemas){
-                    if (favourite_schema.getId() == position){
-                        holder.checkbox_heart.setChecked(true);
-                    }
-                }
+        if (schemas.size() >0){
+         for (Favourite_Schema favourite_schema: schemas){
+            if (favourite_schema.getId() == position){
+                holder.checkbox_heart.setChecked(true);
             }
-        });
+         }
+        }
 
 
         holder.checkbox_heart.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -86,16 +89,12 @@ public class Popular_adpt extends RecyclerView.Adapter<Popular_adpt.ViewHolder> 
                 Favourite_Schema favourite_schema = new Favourite_Schema(popular_model.getNamePop(), popular_model.getDescPop(), popular_model.getImageURI());
 
                 if (b) {
-                    //favourite_schema.setId(position);
-                   /* if (favourite_schema.getId() == position){
-                        holder.checkbox_heart.isChecked();
-                    }else{*/
-                        viewModel.insert(favourite_schema);
-                    //}
-               }else{
-                   viewModel.delete(favourite_schema);
-               }
-
+                    favCheckedBtn.BtnStatus("insert",
+                            favourite_schema);
+                }else{
+                    favCheckedBtn.BtnStatus("delete",
+                           favourite_schema);
+                }
             }
         });
     }
@@ -117,23 +116,6 @@ public class Popular_adpt extends RecyclerView.Adapter<Popular_adpt.ViewHolder> 
             txt_name_pop=itemView.findViewById(R.id.txt_name_pop);
             txt_desc_pop=itemView.findViewById(R.id.txt_desc_pop);
             checkbox_heart=itemView.findViewById(R.id.checkbox_heart);
-
-
-            viewModel = ViewModelProviders.of((MainActivity) context).get(Favourite_viewModel.class);
-            viewModel.getAllFavs().observe((MainActivity) context, new Observer<List<Favourite_Schema>>() {
-                @Override
-                public void onChanged(List<Favourite_Schema> favourite_schemas) {
-                   for (Favourite_Schema schema:favourite_schemas){
-                       if (schema.getId() == getAdapterPosition()){
-
-                       }
-                   }
-
-                }
-            });
-
-
-
         }
     }
 

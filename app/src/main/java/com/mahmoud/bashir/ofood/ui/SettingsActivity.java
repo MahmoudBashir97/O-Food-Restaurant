@@ -2,6 +2,7 @@ package com.mahmoud.bashir.ofood.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SwitchCompat;
+import androidx.appcompat.widget.Toolbar;
 
 import android.app.AlarmManager;
 import android.app.Notification;
@@ -28,10 +29,14 @@ public class SettingsActivity extends AppCompatActivity {
 
     String CUID="";
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
+
+
+
 
         switch_notification=findViewById(R.id.switch_notification);
         log_out=findViewById(R.id.log_out);
@@ -40,9 +45,7 @@ public class SettingsActivity extends AppCompatActivity {
         CUID=getIntent().getStringExtra("CUID");
 
         img_back.setOnClickListener(view -> {
-            Intent intent=new Intent(SettingsActivity.this,MainActivity.class);
-            startActivity(intent);
-            finish();
+            onSupportNavigateUp();
         });
 
 
@@ -93,4 +96,14 @@ public class SettingsActivity extends AppCompatActivity {
 
            // manager.setRepeating(AlarmManager.RTC_WAKEUP,SystemClock.elapsedRealtime()+6000,6000,pendingIntent);
     }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+
+        return true;
+    }
+
+
+
 }

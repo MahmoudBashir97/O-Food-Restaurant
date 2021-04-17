@@ -5,15 +5,25 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.ContentResolver;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import io.reactivex.CompletableObserver;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 
+
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,25 +47,27 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.StorageTask;
 import com.google.firebase.storage.UploadTask;
 import com.mahmoud.bashir.ofood.R;
+import com.mahmoud.bashir.ofood.Room.Favourite_DB.Favourite_Repository;
+import com.mahmoud.bashir.ofood.Room.Favourite_DB.Favourite_Schema;
 import com.mahmoud.bashir.ofood.Storage.SharedPrefranceManager;
+import com.mahmoud.bashir.ofood.ViewModel.Favourite_viewModel;
 import com.mahmoud.bashir.ofood.adapters.Category_adpt;
 import com.mahmoud.bashir.ofood.adapters.Cuisine_adpt;
 import com.mahmoud.bashir.ofood.adapters.Popular_adpt;
+import com.mahmoud.bashir.ofood.adpt_interfaces.fav_checked_btn;
 import com.mahmoud.bashir.ofood.models.Category_Model;
 import com.mahmoud.bashir.ofood.models.Cuisine_Model;
 import com.mahmoud.bashir.ofood.models.Popular_Model;
 import com.mahmoud.bashir.ofood.ui.SettingsActivity;
 import com.mahmoud.bashir.ofood.ui.Shopping_cart_Activity;
+import com.mahmoud.bashir.ofood.viewModelFactory;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-/**
- * A simple {@link Fragment} subclass.
- */
-public class HomeFragment extends Fragment {
+public class HomeFragment extends Fragment implements fav_checked_btn{
 
 
     private static final int IMAGE_REQUEST=1;
@@ -92,8 +104,9 @@ public class HomeFragment extends Fragment {
     List<Category_Model> category_modelList;
     List<Popular_Model> popular_modelList;
     List<Cuisine_Model> cuisine_modelList;
-
-
+    //ViewModel
+    Favourite_viewModel viewModel;
+    String phone_no;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -115,6 +128,10 @@ public class HomeFragment extends Fragment {
         txt_usename=v.findViewById(R.id.txt_usename);
         user_image=v.findViewById(R.id.user_image);
         added_check_marker=v.findViewById(R.id.added_check_marker);
+        Favourite_Repository repository = new Favourite_Repository(getActivity().getApplication());
+        viewModelFactory viewFactory = new viewModelFactory(getActivity().getApplication(),repository);
+        viewModel = new ViewModelProvider(this, viewFactory).get(Favourite_viewModel.class);
+
 
 
         if (SharedPrefranceManager.getInastance(getContext()).getChecked().equals("true")){
@@ -123,7 +140,8 @@ public class HomeFragment extends Fragment {
 
         auth = FirebaseAuth.getInstance();
         Current_user_ID = auth.getCurrentUser().getUid();
-        reference = FirebaseDatabase.getInstance().getReference("Users").child(Current_user_ID);
+        phone_no = SharedPrefranceManager.getInastance(this.getContext()).getUserPhone();
+        reference = FirebaseDatabase.getInstance().getReference("Users").child(phone_no);
         UserprofileImage = FirebaseStorage.getInstance().getReference().child("Profile Images");
 
         RetrieveUserInfo();
@@ -167,123 +185,104 @@ public class HomeFragment extends Fragment {
         cuisine_rec.setLayoutManager(CuisinehorizontalLayoutManager);
 
 
-        category_modelList=new ArrayList<>();
-        for (int i = 0; i <= 5; i++) {
-            switch (i) {
-                case 0:
-                    category_model = new Category_Model(R.drawable.breakfast, "Breakfast");
-                    category_modelList.add(category_model);
-                    break;
-                case 1:
-                    category_model = new Category_Model(R.drawable.cake, "Sweets");
-                    category_modelList.add(category_model);
-                    break;
-                case 2:
-                    category_model = new Category_Model(R.drawable.fruits, "Fruits");
-                    category_modelList.add(category_model);
-                    break;
-                case 3:
-                    category_model = new Category_Model(R.drawable.indian, "Indian");
-                    category_modelList.add(category_model);
-                    break;
-                case 4:
-                    category_model = new Category_Model(R.drawable.brazilian, "Brazilian");
-                    category_modelList.add(category_model);
-                    break;
-                case 5:
-                    category_model = new Category_Model(R.drawable.indian, "Egyptian");
-                    category_modelList.add(category_model);
-                    break;
-                default:
-                    category_model = new Category_Model(R.drawable.breakfast, "");
-                    category_modelList.add(category_model);
+       setCategoryList();
+       setPopularList();
+       setCuisineList();
+        viewModel.getAllFavs().observe(getActivity(), new Observer<List<Favourite_Schema>>() {
+            @Override
+            public void onChanged(List<Favourite_Schema> favourite_schemas) {
+                popular_adpt=new Popular_adpt(getContext(),popular_modelList,favourite_schemas,HomeFragment.this);
+                popular_rec.setAdapter(popular_adpt);
             }
-        }
+        });
+        return v;
+    }
 
+    private void setPopularList() {
+        int[] popularImgs = {
+                R.drawable.lemon_ricotta_pancakes,
+                R.drawable.lemon_ricotta_pancakes2,
+                R.drawable.lemon_ricotta_pancakes,
+                R.drawable.banana_oat_pancakes_title,
+                R.drawable.french_food,
+                R.drawable.egypt_cuisine
+        };
+
+        String[] popularNames = {
+                "BlueBerry Ricatto Pancakes ",
+                "BlueBerry Ricatto Pancakes ",
+                "BlueBerry Ricatto Pancakes ",
+                "BlueBerry Ricatto Pancakes ",
+                "BlueBerry Ricatto Pancakes ",
+                "BlueBerry Ricatto Pancakes "
+        };
+        String[] popularDesc = {
+                "Fluffy and light BlueBerry Ricatto Pancakes",
+                "Fluffy and light BlueBerry Ricatto Pancakes",
+                "Fluffy and light BlueBerry Ricatto Pancakes",
+                "Fluffy and light BlueBerry Ricatto Pancakes",
+                "Fluffy and light BlueBerry Ricatto Pancakes",
+                "Fluffy and light BlueBerry Ricatto Pancakes"
+        };
+        popular_modelList=new ArrayList<>();
+        for (int i=0;i<popularImgs.length;i++) {
+           Popular_Model popular_model = new Popular_Model(popularImgs[i],popularNames[i],popularDesc[i]);
+           popular_modelList.add(popular_model);
+        }
+    }
+
+    private void setCategoryList() {
+        int[] catImgs ={
+                R.drawable.breakfast,
+                R.drawable.cake,
+                R.drawable.fruits,
+                R.drawable.indian,
+                R.drawable.brazilian,
+                R.drawable.indian,
+        };
+        String[] catNames={
+                "Breakfast",
+                "Sweets",
+                "Fruits",
+                "Indian",
+                "Brazilian",
+                "Egyptian"
+        };
+        category_modelList=new ArrayList<>();
+        for (int i = 0; i <catImgs.length; i++) {
+            Category_Model category_model = new Category_Model(catImgs[i],catNames[i]);
+            category_modelList.add(category_model);
+        }
         category_adpt=new Category_adpt(getContext(),category_modelList);
         category_rec.setAdapter(category_adpt);
+    }
 
-
-        popular_modelList=new ArrayList<>();
-
-        for (int i=0;i<=5;i++) {
-            switch (i) {
-                case 0:
-                    popular_model = new Popular_Model(R.drawable.lemon_ricotta_pancakes, "BlueBerry Ricatto Pancakes ","Fluffy and light BlueBerry Ricatto Pancakes");
-                    popular_modelList.add(popular_model);
-                    break;
-                case 1:
-                    popular_model = new Popular_Model(R.drawable.lemon_ricotta_pancakes, "BlueBerry Ricatto Pancakes ","Fluffy and light BlueBerry Ricatto Pancakes");
-                    popular_modelList.add(popular_model);
-                    break;
-                case 2:
-                    popular_model = new Popular_Model(R.drawable.lemon_ricotta_pancakes2, "BlueBerry Ricatto Pancakes ","Fluffy and light BlueBerry Ricatto Pancakes");
-                    popular_modelList.add(popular_model);
-                    break;
-                case 3:
-                    popular_model = new Popular_Model(R.drawable.banana_oat_pancakes_title, "BlueBerry Ricatto Pancakes ","Fluffy and light BlueBerry Ricatto Pancakes");
-                    popular_modelList.add(popular_model);
-                    break;
-                case 4:
-                    popular_model = new Popular_Model(R.drawable.french_food, "BlueBerry Ricatto Pancakes ","Fluffy and light BlueBerry Ricatto Pancakes");
-                    popular_modelList.add(popular_model);
-                    break;
-                case 5:
-                    popular_model = new Popular_Model(R.drawable.egypt_cuisine, "BlueBerry Ricatto Pancakes ","Fluffy and light BlueBerry Ricatto Pancakes");
-                    popular_modelList.add(popular_model);
-                    break;
-                default:
-                    popular_model = new Popular_Model(R.drawable.lemon_ricotta_pancakes, "","");
-                    popular_modelList.add(popular_model);
-
-            }
-        }
-        popular_adpt=new Popular_adpt(getContext(),popular_modelList);
-        popular_rec.setAdapter(popular_adpt);
-
-
-
-
+    private void setCuisineList() {
+        int[] cuisineImgs = {
+                R.drawable.italian_cuisine,
+                R.drawable.moroccan_food,
+                R.drawable.egypt_cuisine,
+                R.drawable.asian_cuisine,
+                R.drawable.egypt_cuisine,
+                R.drawable.italian_cuisine,
+        };
+        String[] cuisineNames={
+                "French",
+                "Moroccan",
+                "Egyptian",
+                "Asian",
+                "Egyptian",
+                "Italian"
+        };
         cuisine_modelList=new ArrayList<>();
-
-        for (int i=0;i<=5;i++) {
-            switch (i) {
-                case 0:
-                    cuisine_model = new Cuisine_Model(R.drawable.italian_cuisine, "French");
-                    cuisine_modelList.add(cuisine_model);
-                    break;
-                case 1:
-                    cuisine_model = new Cuisine_Model(R.drawable.italian_cuisine, "Italian");
-                    cuisine_modelList.add(cuisine_model);
-                    break;
-                case 2:
-                    cuisine_model = new Cuisine_Model(R.drawable.moroccan_food, "Moroccan");
-                    cuisine_modelList.add(cuisine_model);
-                    break;
-                case 3:
-                    cuisine_model = new Cuisine_Model(R.drawable.egypt_cuisine, "Egyptian");
-                    cuisine_modelList.add(cuisine_model);
-                    break;
-                case 4:
-                    cuisine_model = new Cuisine_Model(R.drawable.asian_cuisine, "Asian");
-                    cuisine_modelList.add(cuisine_model);
-                    break;
-                case 5:
-                    cuisine_model = new Cuisine_Model(R.drawable.egypt_cuisine, "Egyptian");
-                    cuisine_modelList.add(cuisine_model);
-                    break;
-                default:
-                    cuisine_model = new Cuisine_Model(R.drawable.lemon_ricotta_pancakes, "");
-                    cuisine_modelList.add(cuisine_model);
-            }
+        for (int i =0;i<cuisineImgs.length;i++){
+           Cuisine_Model cuisine_model = new Cuisine_Model(cuisineImgs[i],cuisineNames[i]);
+           cuisine_modelList.add(cuisine_model);
         }
 
         cuisine_adpt=new Cuisine_adpt(getContext(),cuisine_modelList);
         cuisine_rec.setAdapter(cuisine_adpt);
-
-        return v;
     }
-
 
 
     private void openImage() {
@@ -322,7 +321,7 @@ public class HomeFragment extends Fragment {
                         Uri downloadUri= (Uri) task.getResult();
                         String muri=downloadUri.toString();
 
-                        reference= FirebaseDatabase.getInstance().getReference("Users").child(Current_user_ID);
+                        reference= FirebaseDatabase.getInstance().getReference("Users").child(phone_no);
                         HashMap<String,Object> map=new HashMap<>();
                         map.put("image",muri);
                         reference.updateChildren(map);
@@ -358,8 +357,6 @@ public class HomeFragment extends Fragment {
                 Toast.makeText(getContext(), "Upload in progress", Toast.LENGTH_SHORT).show();
             } else {
                 uploadimage();
-
-
             }
         }
     }
@@ -368,7 +365,6 @@ public class HomeFragment extends Fragment {
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
 
                 if (!dataSnapshot.child("image").getValue().toString().equals(null)) {
                     String prof_uri= String.valueOf(dataSnapshot.child("image").getValue());
@@ -387,5 +383,46 @@ public class HomeFragment extends Fragment {
         });
     }
 
+    @Override
+    public void BtnStatus(String status,Favourite_Schema schema) {
+        if (status.equals("insert") && schema != null){
+            viewModel.insert(schema).subscribeOn(Schedulers.computation())
+            .subscribe(new CompletableObserver() {
+                @Override
+                public void onSubscribe(@io.reactivex.annotations.NonNull Disposable d) {
 
+                }
+
+                @Override
+                public void onComplete() {
+                    viewModel.Update(schema);
+                    Log.d("checkbtn :","Favourite Data Inserted");
+                }
+
+                @Override
+                public void onError(@io.reactivex.annotations.NonNull Throwable e) {
+
+                }
+            });
+        }else {
+            viewModel.delete(schema).subscribeOn(Schedulers.computation())
+                    .subscribe(new CompletableObserver() {
+                        @Override
+                        public void onSubscribe(@io.reactivex.annotations.NonNull Disposable d) {
+
+                        }
+
+                        @Override
+                        public void onComplete() {
+                            viewModel.Update(schema);
+                            Log.d("checkbtn : ","Favourite Data Deleted");
+                        }
+
+                        @Override
+                        public void onError(@io.reactivex.annotations.NonNull Throwable e) {
+
+                        }
+                    });
+        }
+    }
 }

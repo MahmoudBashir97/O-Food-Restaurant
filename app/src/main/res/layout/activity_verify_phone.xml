@@ -46,12 +46,23 @@
 
     </LinearLayout>
 
+    <TextView
+        android:id="@+id/txt_attention_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Please enter your phone number with country code \nstarting with +"
+        android:textSize="15sp"
+        android:textColor="#FFFFFF"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/ll"
+        android:layout_marginTop="5dp"
+        android:gravity="center"/>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/ll"
-        android:layout_marginTop="25dp">
+        android:layout_marginTop="40dp">
         <LinearLayout
 
             android:layout_width="match_parent"
@@ -63,7 +74,6 @@
 
 
             <com.google.android.material.textfield.TextInputEditText
-
                 android:id="@+id/phone_no"
                 android:layout_width="250dp"
                 android:layout_height="50dp"

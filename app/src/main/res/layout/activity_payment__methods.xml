@@ -21,18 +21,10 @@
         android:layout_height="250dp"
         android:background="@drawable/payment_background"/>
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/crdv1"
-        android:layout_width="300dp"
-        android:layout_height="200dp"
-        app:cardCornerRadius="10dp"
-        app:cardElevation="20dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="110dp">
         <com.wajahatkarim3.easyflipview.EasyFlipView
             android:id="@+id/flipview"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="300dp"
+            android:layout_height="200dp"
             app:flipOnTouch="true"
             app:flipEnabled="true"
             app:flipDuration="400"
@@ -40,6 +32,8 @@
             app:flipFrom="front"
             app:autoFlipBack="false"
             app:autoFlipBackTime="2000"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="110dp"
             >
 
             <include layout="@layout/card_back_layout"/>
@@ -48,7 +42,6 @@
 
         </com.wajahatkarim3.easyflipview.EasyFlipView>
 
-    </androidx.cardview.widget.CardView>
 
     <LinearLayout
         android:id="@+id/lin_txt_payment"
@@ -56,7 +49,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_marginTop="30dp"
-        android:layout_below="@+id/crdv1">
+        android:layout_below="@+id/flipview">
 
         <ImageView
             android:layout_width="30dp"
